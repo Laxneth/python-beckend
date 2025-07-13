@@ -1,0 +1,48 @@
+import threading
+import time
+
+x = 8192
+
+lock = threading.Lock() #locking means functions runs until resource (while) is done
+
+def double():
+    global x, lock #we use x in entire code
+    lock.acquire()
+    while x < 16384:
+        x *= 2
+        print(x)
+        time.sleep(1) #tells programe to  wait 1 seconds
+    print("Reached the maximum")
+    lock.release()
+
+def halve():
+    global x, lock
+    lock.acquire()  
+    while x > 1:
+        x /= 2
+        print(x)
+        time.sleep(1)       #this helps with theards work simutaniusly
+    print("Reached the minimum")
+    lock.release()  
+
+t1 = threading.Thread(target=halve)
+t2 = threading.Thread(target=double)     
+
+#t1.start()
+#t2.start()
+
+#Semaphore
+
+samephore = threading.BoundedSemaphore(value=5)
+
+def access(thread_number):
+    print("{} is trying to access".format(thread_number))
+    samephore.acquire()
+    print("{} was granted access".format(thread_number))
+    time.sleep(15)
+    samephore.release()
+
+for thread_number in range(1,11):
+    t = threading.Thread(target=access, args=(thread_number,)) #args means we pass the thread_number to access function
+    t.start()
+    time.sleep(1)

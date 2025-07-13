@@ -1,0 +1,124 @@
+# Import required modules
+import sqlite3  # For database operations
+import time     # Not used here, but can be used for delays/logging if needed
+
+# Connect to (or create) an SQLite database file named 'mydata.db'
+connection = sqlite3.connect('mydata.db')  
+
+# Create a cursor object to execute SQL commands
+cursor = connection.cursor()  
+
+# Define a Person class to interact with 'persons' table in the database
+class Person:
+    # Constructor: initializes a person object with optional parameters
+    def __init__(self, id_number=None, first=None, last=None, age=None):
+        self.id_number = id_number
+        self.first = first
+        self.last = last
+        self.age = age
+
+        # Each instance has its own database connection and cursor
+        self.connection = sqlite3.connect('mydata.db') 
+        self.cursor = self.connection.cursor() 
+
+    # Method to load person info from database using their ID
+    def load_person(self, id_number):
+        # Execute SELECT query safely with a placeholder (prevents SQL injection)
+        self.cursor.execute("""
+        SELECT * FROM persons
+        WHERE id = ?
+        """, (id_number,))
+
+        # Fetch the first result (row)
+        result = self.cursor.fetchone()  
+
+        # If a result is found, assign database values to the instance variables
+        if result:
+            self.id_number = result[0]
+            self.first = result[1]
+            self.last = result[2]
+            self.age = result[3]
+        else:
+            # If no result is found, print a message
+            print("No person found with that ID.")
+    
+    # Method to insert the person object into the database
+    def insert_person(self):
+        # Use parameterized INSERT query for safety
+        self.cursor.execute("""
+            INSERT INTO persons (id, first_name, last_name, age)
+            VALUES ('{}', '{}','{}', '{}')
+        """.format(self.id_number, self.first, self.last, self.age))
+
+        # Commit changes to the database
+        self.connection.commit()
+
+
+# Create the 'persons' table if it doesn't already exist
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS persons (
+    id INTEGER PRIMARY KEY, 
+    first_name TEXT,
+    last_name TEXT,
+    age INTEGER
+)
+""")  
+
+# Check if the table already has rows to avoid duplicate data on every run
+cursor.execute("SELECT COUNT(*) FROM persons")
+if cursor.fetchone()[0] == 0:  
+    # Insert initial sample data (only once)
+    cursor.execute("""
+    INSERT INTO persons VALUES
+    (1, 'Paul', 'Smith', 24),
+    (2, 'Mark', 'Johnson', 42),               
+    (3, 'Anna', 'Smith', 34)               
+    """)
+
+# Select all people with last name 'Smith' from the table
+cursor.execute("""
+SELECT * FROM persons
+WHERE last_name = 'Smith'
+""")
+
+# Fetch and print all 'Smith' entries
+smiths = cursor.fetchall()  
+print(smiths)  
+
+# Commit changes to make sure all inserts are saved
+connection.commit()  
+
+# Create a new Person object with no initial data
+p1 = Person()
+
+# Load the person with ID = 1 from the database into the object
+p1.load_person(1)
+
+# Print loaded person's information
+print(p1.first)
+print(p1.last)
+print(p1.age)
+print(p1.id_number)
+
+# Create a new Person object with specified data
+p2 = Person(7, "Alex", "Robbins", 30)
+
+# Insert this new person into the database
+p2.insert_person()
+
+# Query the database to fetch all person records
+cursor.execute("SELECT * FROM persons")
+all_persons = cursor.fetchall()
+print(all_persons)  # Print all person records
+
+# Load Alex's data back from the database to p2 object
+p2.load_person(7)
+
+# Print Alex's information
+print(p2.first)
+print(p2.last)
+print(p2.age)
+print(p2.id_number)
+
+# Close the database connection at the end of the program
+connection.close()

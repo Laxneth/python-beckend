@@ -1,0 +1,42 @@
+file = open('file.','r')  #'w' for writing mode
+content = file.read()     #'r' for reading
+                              #'a' for pending
+
+file.close() #we need to close the file when we done with the file
+print(content)
+
+with open('file', 'r') as f:
+        #ALL OF THE CODE
+        content2 = f.read()
+        print(content2)
+            #this method is useful when we use the file for once
+
+file = open('file2','w')  #also this can be write with 'with' method
+file.write("Hello Aykut")   #writing method can create a file that never exist
+file.close()            #we close the file for saving
+
+with open('file2','r') as f2:
+        content = f2.read()
+print(content)
+
+file2 = open('file2','a')
+file2.write(" Hello Again!!!")
+file2.flush() #same as file.close
+
+
+with open('file2','r') as f2:
+        content = f2.read()
+print(content)
+
+#Other File Operations
+file3 = open('file3','w')
+file3.write(" Hello Again!!!")
+file3.flush() 
+
+from os import *
+
+rename("file","file_changed")
+remove('file_remove')
+mkdir('Test') #makes directory
+chdir('Test') #change directory
+mkdir('newTest')

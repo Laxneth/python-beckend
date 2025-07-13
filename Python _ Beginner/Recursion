@@ -1,0 +1,44 @@
+# 9! = 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1  -> normal way
+# 9! = 9 * 8! -> recursive way
+
+#nonrecursive way
+n = 7
+fact = 1
+
+while n > 0:
+    fact = fact * n
+    n -= 1
+
+print(fact)
+
+#recursive way
+def factioral(n):
+    if n < 1:
+        return 1
+    else:
+        number = n * factioral(n - 1)
+        return number
+    
+print(factioral(7))
+
+#example fibonacci sequance
+
+def fibonacci(n):
+    a, b = 0, 1
+    for x in range(n):
+        a, b = b, a+b
+    return a 
+
+print(fibonacci(6))
+
+def rec_fibo(n):
+    if n <= 1:
+        return n
+    else:
+       return (rec_fibo(n-1) + rec_fibo(n-2))
+
+print(rec_fibo(5))
+        
+
+
+    

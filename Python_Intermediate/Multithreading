@@ -1,0 +1,19 @@
+import threading #import the threading module
+
+def function1():
+    for x in range(10):
+        print("ONE")
+
+def function2():
+    for x in range (10):
+        print("TWO")
+
+t1 = threading.Thread(target = function1) #Threads use ofr execute functions at the same time
+t2 = threading.Thread(target = function2)
+
+t1.start() #ıf we want to execute both function at the same time
+t2.start() #so we must use 'start' function intead of 'run' function
+t1.join()
+t2.join()
+#If we want to wait for the thread function to end, we must use the join function.
+print("Another Text")

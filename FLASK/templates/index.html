@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Index Page{% endblock %}
+
+{% block content %}
+    <h1>Hello World</h1>
+    
+    <!-- Display variables passed from Flask -->
+    <p>{{ my_name }}</p>
+    <p>{{ my_result }}</p>
+    
+    <!-- Display the list as a string (optional) -->
+    <p>{{ mylist }}</p>
+    
+    <!-- Loop over each item in mylist and display it inside an unordered list -->
+    <ul>
+        {% for item in mylist %}
+            {% if item == 30 %}
+                <li style="color: red;">{{ item }}</li>
+            {% else %}
+                <li>{{ item }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('filters') }}">Filters</a>
+
+
+{% endblock %}

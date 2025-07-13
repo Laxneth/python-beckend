@@ -1,0 +1,39 @@
+#ARITHMATIC OPERATORS
+print('ARITHMATIC OPERATORS')
+print(10 % 3) #gives us the reminder
+print(2**5) #means 2^5
+print(24 // 5) #floor division
+print(-24 // 5) #gives -5 because it rounds down to smaller
+
+#ASSIGMNET OPERATORS
+print('ASSIGMNET OPERATORS')
+x = 10 
+x = x + 5
+print(x)
+x -= 10 #means x = x - 10
+print(x)
+
+#COMPARISION OPARATORS 
+print('COMPARISION OPERATORS')
+# '==' equal, '!=' notequal, '<,>' less and greater, '<= , >=' less and greater or equal
+x = 10
+y = 20
+print(x == y)
+print(x <= y)
+print(x != y)
+print(x >= y) 
+#these operators can use with strings
+
+#LOGICAL OPERATORS (and, or, not)
+print('LOGICAL OPERATORS')
+print(10 < 20 or 20 > 30) 
+print(10 < 20 and 20 > 30)
+print( not True)
+
+#USER INPUT
+print('USER INTPUT')
+x = input("Enter number one:")
+y = input("Enter number two:")
+x = int(x)
+y = int(y)  #without typecast we get xy in
+print(x+y)

@@ -1,0 +1,65 @@
+class Person:
+        amount = 0 #holds how many Persons we have
+
+        def __init__(self, name, age, height): #We can enter person's name,age,height
+             self.name = name
+             self.age = age
+             self.height = height
+             Person.amount += 1
+
+        def __str__(self):
+              return "Name: {}  Age: {} Height: {}".format(self.name,self.age,self.height)
+        
+        def get_older(self, years):
+              self.age += years
+
+        def __del__(self):
+              print("Object Deleted!!")
+              Person.amount -= 1
+
+class Worker (Person): #Worker inherits from Person class
+      
+      def __init__(self, name, age, height, salary):
+            super(Worker,self).__init__(name, age, height) #we access __init__ function in Person class
+            self.salary = salary #and we add salary variable
+
+      def __str__(self):
+            text = super(Worker,self).__str__()
+            text += ", Salary: {}".format(self.salary)
+            return text
+            
+      def calc_yearly_salary(self):
+            return self.salary * 12
+      
+
+worker1 = Worker("Aykut", 35, 178, 3000)
+print(worker1)
+print(worker1.calc_yearly_salary())
+
+#Operator Overloading
+
+class Vector:
+      def __init__(self, name, x, y):
+            self.name = name
+            self.x = x
+            self.y = y
+
+      def __add__(self, other):#other means other Vector that we will add the first vector
+        return Vector(f"({self.name}+{other.name})", self.x + other.x, self.y + other.y)
+
+      def __sub__(self, other): #used f-strings for writing the operation
+        return Vector(f"({self.name}-{other.name})", self.x - other.x, self.y - other.y)
+      
+      def __str__(self):
+            return " Vector_{}: X = {} Y = {}".format(self.name, self.x, self.y)
+            
+v1 = Vector("v1", 3, 4)
+v2 = Vector("v2", 5, 8)
+
+print(v1)
+print(v2)
+    
+v3 = v1 + v2
+print(v3)
+v3 = v1 - v2
+print(v3)

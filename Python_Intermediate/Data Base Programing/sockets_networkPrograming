@@ -1,0 +1,16 @@
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+#creating socket -> 'AF_INET means this is a internet socket
+#we use protokol 'TCP' -> 'SOCK_STREAM
+
+s.bind(('127.0.0.1', 55555)) #we pass ip adress and the port for the socket that we created
+#this is the date that we want our socket run on
+s.listen() #puts our socket to listening mode
+
+while True: #this loop means we accept every single client
+    client , address = s.accept() 
+    print("Connection to {}".format(address))
+    client.send("You are connected!".encode())
+    client.close()
+

@@ -1,0 +1,29 @@
+x = input("Enter number one:")
+y = input("Enter number two:")
+x = int(x)
+y = int(y)
+
+if x < y : 
+    print('x is less then y')
+elif x > y:
+    print('x is greater then y')
+    if x > 100 :
+        print('x is greater then 100!')
+else:
+    print('x is equal to y')
+
+op = input('Enter the operation (+,-,/,*) :')
+
+#simple calculator
+if op == '+' : 
+    print(x+y)
+elif op == '-':
+    print(x-y)
+elif op == '/':
+    print(x/y)
+elif op == '*':
+    print(x*y)
+else:
+    print('ERROR')
+
+

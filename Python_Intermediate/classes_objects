@@ -1,0 +1,56 @@
+class MyPerson:
+
+    def __init__(self):
+        print("Hello World")
+
+x = MyPerson() #Same as MyPerson.__init__ 
+
+class Person_test:
+
+        def __init__(self):
+             self.name = "Aykut"
+             self.age = 20
+
+person1 = Person_test()
+print(person1.name)
+print(person1.age)
+
+class Person:
+        amount = 0 #holds how many Persons we have
+
+        def __init__(self, name, age, height): #We can enter person's name,age,height
+             self.name = name
+             self.age = age
+             self.height = height
+             Person.amount += 1
+        
+        def hello_world(self): #we can also define simple methods
+              print("Hello World!")
+
+        def __str__(self):
+              return "Name: {}  Age: {} Height: {}".format(self.name,self.age,self.height)
+        
+        def get_older(self, years):
+              self.age += years
+
+        def __del__(self):
+              print("Object Deleted!!")
+              Person.amount -= 1
+
+me = Person("Aykut",20,178)
+print(me.name)
+print(me.age)
+print(me.height)
+me.name = "Derin" #we can change variables
+print(me.name)
+me.name = "Aykut"
+me.hello_world()
+
+print("Person Info: \n{} " .format(me))
+person2 = Person("Derin",9,140)
+#before we print the object we return something with __str__ (line 29)
+print(Person.amount)
+me.get_older(10)
+print(me.age)
+del me #delete the object and the object is no longer occupy memory
+print(Person.amount)

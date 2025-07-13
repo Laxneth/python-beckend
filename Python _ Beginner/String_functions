@@ -1,0 +1,45 @@
+text = "Hello World!"
+print(text[6:])  #we treat string as a list
+print(len(text))
+
+#Escape Characters
+text2 = "Hello World\nThis day is awesome" #'\n' is a new line character
+print(text2)                       # '\t' = tab  '\b' = backspace  '\s' = space
+
+#String Formating
+name = input()
+age = input()
+
+print("My name is " +name+". I am "+age+" years old")
+print("My name is {}. I am {} years old".format(name,age))
+age = int(age)
+print("My name is %s. I am %d years old" % (name ,age))
+
+#STRING FUNCTIONS
+#Case Functions
+text = text.upper() #HELLO WORLD
+print(text)
+text = text.title() #Hello World
+print(text)
+text = text.swapcase() #hELLO wORLD
+print(text)
+
+#Count Function
+mytext = "My name is Aykut. My favorite color is blue"
+print(mytext.count("My")) #it gives us how many times 'My' occurs
+
+#Find Function
+print(mytext.find("Aykut")) #shows the index that 'Aykut' string starts
+
+#joint Function
+new_list = ['Aykut','Derin','Naz']
+seperator = ';'
+print(seperator.join(new_list)) #seperates all the elemnts in the list with ';'
+
+#Split Function
+words = mytext.split(' ') #words = ['My', 'name', 'is', 'Aykut.', 'My', 'favorite', 'color', 'is', 'blue']
+print(words)
+
+#Replace Function
+mytext = mytext.replace("Aykut","Derin")
+print(mytext)

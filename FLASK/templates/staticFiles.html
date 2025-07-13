@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Static File Page{% endblock %}
+
+{% block content %}
+    {# Link to custom CSS file from the static folder using Flask's url_for #}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+    {# Link to Bootstrap CSS from a static path (assuming it's placed in /static/css/bootstrap.css) #}
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+
+    {# Link to Bootstrap JS (assuming it's placed in /static/js/bootstrap.js) #}
+    <script src="/js/bootstrap.js"></script>
+
+    {# Page title header #}
+    <h1>Hello World</h1>
+
+    {# Display image using Flask's static file helper #}
+    <img src="{{ url_for('static', filename='img/photo.jpg') }}" alt="Text">
+
+    {# Link to custom JS file (hello.js) located in /static/js/ #}
+    <script src="/js/hello.js"></script>
+
+    {# Paragraph with a special class, likely styled by style.css #}
+    <p class="special">Hello</p>
+
+    {# Example Bootstrap button with primary color class #}
+    <a href="#" class="btn btn-primary">Button Text</a>
+{% endblock %}

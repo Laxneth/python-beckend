@@ -1,0 +1,38 @@
+import threading
+
+event = threading.Event()
+
+def myfunction():
+    print("Waiting for event to trigger...")
+    event.wait() #if we do not set the evet it waits until we set
+    print("Performing action XYZ now...") 
+
+t1 = threading.Thread(target=myfunction)
+t1.start()
+
+x = input("Do you want to trigger the event? (y/n)")
+if x == "y":
+    event.set()
+
+import time
+
+path = "text" 
+text = ""
+
+def readFile():
+    global path, text
+    while True:  #this loops reads the file all time with 3 seconds of break
+        with open("text", "r") as f:
+            text = f.read()
+        time.sleep(3)
+
+def printloop():
+    for x in range(30):
+        print(text)
+        time.sleep(1)
+
+t3 = threading.Thread(target=readFile,daemon=True)
+t4 = threading.Thread(target=printloop)
+
+t3.start()
+t4.start()

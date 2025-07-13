@@ -1,0 +1,62 @@
+import xml.dom.minidom
+
+# Parse the existing XML file and get the DOM tree
+domtree = xml.dom.minidom.parse("XML_file")  # Replace with your actual file name
+group = domtree.documentElement  # Get the root element (e.g., <data>)
+
+# Get all <person> elements in the XML
+persons = group.getElementsByTagName("person")
+
+# Iterate through each person and print their details
+for person in persons:
+    print("------PERSON------")
+    
+    # If the person has an "id" attribute, print it
+    if person.hasAttribute("id"):
+        print("ID : {}".format(person.getAttribute("id")))
+    
+    # Print name, age, weight, and height by accessing their respective tags
+    print("Name : {}".format(person.getElementsByTagName('name')[0].childNodes[0].data))
+    print("Age : {}".format(person.getElementsByTagName('age')[0].childNodes[0].data))
+    print("Weight : {}".format(person.getElementsByTagName('weight')[0].childNodes[0].data))
+    print("Height : {}".format(person.getElementsByTagName('height')[0].childNodes[0].data))
+
+# Modify existing data in the XML
+persons[2].getElementsByTagName("name")[0].childNodes[0].nodeValue = "NewName"  # Change name of 3rd person
+persons[0].setAttribute("id", "100")  # Change ID of 1st person
+persons[3].getElementsByTagName("age")[0].childNodes[0].nodeValue = "-10"  # Set age of 4th person to -10
+
+# Save the modified XML back to file
+domtree.writexml(open("XML_file", "w"))
+
+# Create a new <person> element
+newperson = domtree.createElement("person")
+newperson.setAttribute("id", "6")  # Set ID attribute
+
+# Create and add <name> element
+name = domtree.createElement("name")
+name.appendChild(domtree.createTextNode("Aykut Cakar"))
+
+# Create and add <age> element
+age = domtree.createElement("age")
+age.appendChild(domtree.createTextNode("20"))
+
+# Create and add <weight> element
+weight = domtree.createElement("weight")
+weight.appendChild(domtree.createTextNode("83"))
+
+# Create and add <height> element
+height = domtree.createElement("height")
+height.appendChild(domtree.createTextNode("178"))
+
+# Append all child elements to the new <person> element
+newperson.appendChild(name)
+newperson.appendChild(age)
+newperson.appendChild(weight)
+newperson.appendChild(height)
+
+# Append the new person to the root element
+group.appendChild(newperson)
+
+# Write the updated XML (including the new person) to file
+domtree.writexml(open("XML_file", "w"))

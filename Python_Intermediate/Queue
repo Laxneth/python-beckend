@@ -1,0 +1,31 @@
+import queue
+
+q = queue.Queue() #creating queue  #FIFO queue
+
+numbers = [10,20,30,40,50,60,70]
+for number in numbers:
+    q.put(number) #takes all the numbers and put them in queue
+
+print(q.get())
+print(q.get())
+
+q2 = queue.LifoQueue() #creates LIFO 
+
+numbers = [1,2,3,4,5,6,7]
+for number in numbers:
+    q2.put(number) #takes all the numbers and put them in queue
+
+print(q2.get())
+print(q2.get())
+
+q3 = queue.PriorityQueue()
+
+q3.put((2, "Hello World"))
+q3.put((11, 99))
+q3.put((5, 7.5))
+q3.put((1, True))
+q3.put((12, 99))
+
+while not q3.empty():
+    print(q3.get())
+

@@ -1,0 +1,55 @@
+# SAX: Simple API for XML (event-driven parser, read-only)
+# DOM: Document Object Model (loads full XML into memory, editable)
+
+# Import the SAX module
+import xml.sax
+
+# Define a custom handler class for SAX parser
+class GroupHandler(xml.sax.ContentHandler):
+
+    # Called when an XML element starts (e.g., <person>)
+    def startElement(self, name, attrs):
+        self.current = name  # Keep track of the current tag
+        if self.current == "person":
+            print("-------PERSON-------")
+            # Print the ID attribute of the person tag
+            print("ID : {}".format(attrs["id"]))
+
+    # Called when characters (text between tags) are found
+    def characters(self, content):
+        # Save content to the appropriate attribute based on the tag name
+        if self.current == "name":
+            self.name = content
+        elif self.current == "age":
+            self.age = content
+        elif self.current == "weight":
+            self.weight = content
+        elif self.current == "height":
+            self.height = content
+
+    # Called when an XML element ends (e.g., </name>)
+    def endElement(self, name):
+        # Print the content when the corresponding closing tag is found
+        if self.current == "name":
+            print("Name: {}".format(self.name))
+        elif self.current == "age":
+            print("Age: {}".format(self.age))
+        elif self.current == "weight":
+            print("Weight: {}".format(self.weight))
+        elif self.current == "height":
+            print("Height: {}".format(self.height))
+
+        # Reset the current tag after finishing
+        self.current = ""
+
+# Create a SAX handler object from our class
+handler = GroupHandler()
+
+# Create a SAX parser
+parser = xml.sax.make_parser()
+
+# Tell the parser to use our custom handler
+parser.setContentHandler(handler)
+
+# Parse the XML file (you should replace "XML_file" with your actual file name)
+parser.parse("XML_file")

@@ -1,0 +1,71 @@
+mylist = [10, 20, 30, 'string', True, 1.67] 
+print(mylist)
+print(mylist[3])  #prints 'strings'
+print(mylist[1:3]) #takes index 1 and 2 not 3
+print(mylist[-2]) #if we start left then we start counting with 1
+
+mylist[2] = 'string2' #changes 30 with string2
+print(mylist)
+#we can not change index 6 because it it not exist
+
+for x in mylist:
+    print()
+
+list1 = [1,2,3]
+list2 = [4,5,6,'hello',True]
+print(list1 + list2) #this adds list2 to end of the list1
+print(list1 * 4) #this repeats the list1 4 times
+
+x = [1,2,3]
+
+print(len(x))
+print(max(x))
+print(min(x)) #max and min functions do not work for bool and str
+
+x.append('New Value') #add the 'new value' to end of the x
+print(x)
+x.insert(1,"New Value 2") #adds the 'new value 2' to index 1
+print(x)
+x.remove(2) #remove the elemnet 2
+print(x)
+x.pop(2) #removes the element on the index 2
+print(x.index('New Value')) #show index number that holds "New Value"
+
+new_x = [58, 16, 15.9, 28]
+new_x.sort() #sorts the list from lower than higher
+print(new_x)
+print((sorted(new_x))) #same as new_x.sort() but also prints at the same time
+                        # do not change the list 
+
+#TUPLES
+x = (1,2,3) #tuples can not manipulate
+x = list(x) #we can change values by typecastiing
+x[2] = 10 #we change 3 with 10
+print(x) 
+
+#DICTIONARY
+person = {'name':'Mark', 'age': 25, 'gender': 'male'}
+#name is one key pair
+print(person) #print all members of dictionary
+print(person['age']) #we access the age of person by using 'age' key (not index)
+person['height'] = 1.78
+print(person) #adds height key at the end of the person
+
+print(person.items())#('name', 'Mark')
+print(person.keys())# 'name'
+print(person.values()) # Mark
+
+#MEMBERSHIP OPERATORS ('in' and 'not in')
+x = [1,2,3]
+print(2 in x) #checks if 2 is in the x
+print(7 in x)
+print(8 not in x)  #checks if 8 is not in the x
+print(3 not in x)
+#'in' and 'not in' are a boolean ops 
+
+#IDENTITY OPERATORS ('is' and 'is not')
+z = 10 
+if type(z) is int:
+    print('z is a int')
+else:
+    print("z is not int")

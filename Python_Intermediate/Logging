@@ -1,0 +1,44 @@
+# SECURITY LEVELS
+
+# DEBUG : Detailed information, typically for diagnosing problems during development
+# INFO : General events showing the normal flow of a program
+# WARNING : Something unexpected happened, but the program can still run
+# ERROR : A serious issue occurred, and the program might not work properly
+# CRITICAL : A very serious error, likely requiring immediate attention
+
+import logging
+
+
+
+#we used default logger
+#WARNING, ERROR, CRITICAL are show on the screen
+#we can change the level that show on the screen
+logging.basicConfig(level=logging.INFO) #we start seeing the all security levels that more important then INFO
+logging.warning("You have got 20 mails in yout inbox") 
+logging.critical("All components failed!") 
+
+logger = logging.getLogger("Aykut's Logger") #we can create our own logger
+logger.info("The best logger just created")
+logger.critical("Your PC just broked!")
+logger.log(logging.ERROR, "An ERROR accured!") #another way
+
+logger.setLevel(logging.DEBUG)
+#FIRE HANDLER
+handler = logging.FileHandler("mylog.log")
+handler.setLevel(logging.INFO) #we want to start logging at security level INFO
+
+formatter = logging.Formatter("%(levelname)s - %(asctime)s - %(message)s") #this is the format that we want to save in our log
+handler.setFormatter(formatter) 
+#we show the handler to format that it will save
+
+logger.addHandler(handler)
+logger.debug("This is a DEBUG message!")
+logger.info("This is a INFO massage!")
+logger.warning("This is a WARNING message!")
+logger.error("This is a ERROR massage!")
+logger.critical("This is a CRITICAL message!")
+ 
+
+
+
+

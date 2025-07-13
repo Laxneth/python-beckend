@@ -1,0 +1,31 @@
+try :  
+    x = int(input('First Number : '))
+    y = int(input('Second Number : '))
+    print(x / y)
+except:
+    print('There was an error!')
+
+print(x) #these print codes always runs
+print(y)
+
+try :  
+    x = int(input('First Number : '))
+    y = int(input('Second Number : '))
+    print(x / y)
+except ValueError:#if there is any error named ValueError in the try box this code will execute  
+    print('Please enter a number next time!')
+except ZeroDivisionError: #if there is any error named ZeroDivisionError in the try box this code will execute  
+    print('Cannot divide by zero!')
+finally:    #this code works no matter what
+    print('DONE!')
+
+x = 100
+y = 20
+assert(x < y)    #if boolean condition is wrong prints assertion error
+
+def some_function():
+    if True: #condition
+        raise Exception('Something went wrong') 
+
+some_function()
+

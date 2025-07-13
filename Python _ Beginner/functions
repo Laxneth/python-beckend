@@ -1,0 +1,19 @@
+def helloworld():
+    print('Hello World')
+def add(x,y):
+    print(x+y)
+def add_return(x,y):
+    return x + y
+
+helloworld()
+add(11,20)
+result = add_return(20,30)
+print(result)
+
+def mysum(*numbers): #we set up a sequence. this squence takes all numbers that user enters
+    result = 0
+    for number in numbers: 
+        result += number
+    return result
+
+print(mysum(10,20,30))

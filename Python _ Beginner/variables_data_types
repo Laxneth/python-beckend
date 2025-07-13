@@ -1,0 +1,21 @@
+print('Hello World')
+print('10'+'10')
+print(10+10)
+print(type(0.9))
+
+x = 10
+y = 'aykut'
+z = True
+
+print(x)
+print(y)
+print(z)
+
+test = '120' 
+test = float (test) #string just have numbers!!
+print(test / 4)
+
+test2 = 120
+test2 = str(test)   #we can do opposite
+print(test2)
+

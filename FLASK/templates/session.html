@@ -1,0 +1,30 @@
+{% extends "base_flash.html" %}
+
+{% block title %}Session Page{% endblock %}
+
+
+{% block content %}
+
+
+    <h1>Hello World</h1>
+
+    <p>{{ message }}</p>
+
+    {% if name %}
+        <p><strong>Name:</strong> {{ name }}</p>
+    {% endif %}
+
+    {% if other %}
+        <p><strong>Other:</strong> {{ other }}</p>
+    {% endif %}
+
+    <a href="{{ url_for('set_data') }}">Set Session Data</a><br>
+    <a href="{{ url_for('get_data') }}">Get Session Data</a><br>
+    <a href="{{ url_for('clear_session') }}">Clear Session Data</a> <br>
+    <a href="{{ url_for('set_cookie') }}">Set Cookie</a><br>
+    <a href="{{ url_for('get_cookie') }}">Get Cookie</a><br>
+    <a href="{{ url_for('remove_cookie') }}">Cookie Removed</a><br>
+    <a href="{{ url_for('login') }}">Login</a><br>
+
+
+{% endblock %}
